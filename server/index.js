@@ -20,12 +20,18 @@ const port = process.env.PORT;
 
 Connection();
 
+const COR = {
+  origin: "*",
+  Credential: true,
+  methods: ["GET", "POST","DELETE", "PUT"],
+};
+
 app.use(express.static(path.join(__dirname, "uploads")));
 
 //Middleware plugin
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors(COR));
 app.use(cookieParser(process.env.SECRET));
 
 // Router
