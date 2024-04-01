@@ -30,8 +30,8 @@ app.use(cookieParser(process.env.SECRET));
 
 // Router
 app.get("/", async (req, res) => {
-  const BookData = await BookUpload.find({});
-  res.json({ book: BookData });
+ // const BookData = await BookUpload.find({});
+  res.json({ book: "prakash" });
 });
 
 app.use("/user", Router);
