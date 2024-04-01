@@ -20,12 +20,13 @@ const UploadBook = async (req, res) => {
 
 const GetAllBookData = async (req, res) => {
   const BookData = await BookUpload.find({});
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   res.json({ book: BookData });
 };
 
 const GetOneBookData = async (req, res) => {
   const BookData = await BookUpload.findById({ _id: req.params.id });
-
   res.json({ book: BookData });
 };
 
