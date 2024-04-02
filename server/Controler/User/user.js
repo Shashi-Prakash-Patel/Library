@@ -150,7 +150,7 @@ const GetRegisterUserData = async (req, res) => {
   } else {
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
-    res.status(202).json({ message: "Faild", data: "Please login", data : cookieData});
+    res.status(202).json({ message: "Faild", data: "Please login"});
   }
 };
 
