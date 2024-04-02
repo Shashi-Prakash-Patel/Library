@@ -20,15 +20,18 @@ const LoginUser = async (req, res) => {
         process.env.SECRET
       );
 
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
       res.status(200).json({ message: "success", data: data });
     } else {
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.status(202).json({ message: "Please register" });
     }
   } else {
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(203).json({ message: "All field are required" });
   }
 };
@@ -40,7 +43,9 @@ Send the data for auth
 const UsetLoginDataForAuth = async (req, res) => {
   const { id, email } = req.params;
   const data = await loginSchema.find({ _id: id, email: email });
-
+  
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   res.json({ user: data });
 };
 
@@ -55,7 +60,8 @@ const RegisterData = async (req, res) => {
     const UserData = await Profile.findOne({ adhar: adhar, mobile: mobile });
 
     if (UserData) {
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.json({ status: "failed", message: "You are already register" });
     } else {
       const User = new Profile({
@@ -75,12 +81,14 @@ const RegisterData = async (req, res) => {
         process.env.SECRET
       );
 
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.cookie("token", token, { maxAge: 30 * 24 * 60 * 60 * 1000 });
       res.json({ message: "Successful", data: result });
     }
   } else {
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.json({ status: "failed", message: "All the field are required" });
   }
 };
@@ -91,6 +99,8 @@ Send the data of all the user
 const GetAllUserData = async (req, res) => {
   const data = await Profile.find({});
 
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   return res.json({ user: data });
 };
 
@@ -105,14 +115,17 @@ const GetUserProfile = async (req, res) => {
     const { email, _id } = jwt.verify(AuthCookies, process.env.SECRET);
     const data = await Profile.findById({ _id: _id, email });
     if (data) {
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.status(200).json({ user: data });
     } else {
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.status(201).json({ user: "You are not register" });
     }
   } else {
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(202).json({ user: "Please login" });
   }
 };
@@ -124,17 +137,20 @@ const GetRegisterUserData = async (req, res) => {
     const { email, _id } = jwt.verify(cookieData, process.env.SECRET);
     const result = await Profile.find({ _id: _id, name: email });
 
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(200).json({ message: "Successful", data: result });
   } else {
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(202).json({ message: "Faild", data: "Please login" });
   }
 };
 
 const UserLogOut = (req, res) => {
   res.clearCookie("token");
-  res.header("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   res.json({ message: "success" });
 };
 
