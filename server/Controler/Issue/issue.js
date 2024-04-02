@@ -24,7 +24,8 @@ const IssueBookToUser = async (req, res) => {
     await IssueDoc.save();
   }
 
-  res.header("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   res.status(200).json({ message: "Successful" });
 };
 
@@ -47,6 +48,8 @@ const ReturnBookUser = async (req, res) => {
   }
 
   await IssueData.save();
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
   res.json({ message: "Success", Ret: true });
 };
 
@@ -67,8 +70,15 @@ const GetAllBookUserData = async (req, res) => {
       };
       arr.push(newBookData);
     }
+    
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(200).json({ book: arr });
-  } else res.status(201).json({ book: "You don't have any issue book" });
+  } else{
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
+    res.status(201).json({ book: "You don't have any issue book" });
+  }
 };
 
 module.exports = { IssueBookToUser, ReturnBookUser, GetAllBookUserData };
