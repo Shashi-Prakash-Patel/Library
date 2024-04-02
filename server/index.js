@@ -26,6 +26,14 @@ const COR = {
   methods: ["GET", "POST","DELETE", "PUT"],
 };
 
+app.options(
+  "*",
+  cors({
+    origin: "https://react-phi-coral.vercel.app",
+    credentials: true,
+  })
+);
+
 app.use(express.static(path.join(__dirname, "uploads")));
 
 //Middleware plugin
