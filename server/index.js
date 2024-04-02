@@ -21,7 +21,7 @@ const port = process.env.PORT;
 Connection();
 
 const COR = {
-  origin: "*",
+  origin: "https://react-phi-coral.vercel.app",
   Credential: true,
   methods: ["GET", "POST","DELETE", "PUT"],
 };
