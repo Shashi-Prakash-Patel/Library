@@ -24,8 +24,8 @@ const LoginUser = async (req, res) => {
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
-      res.cookie("token", token, {maxAge: 30 * 24 * 60 * 60 * 1000, secure: true, httpOnly: true, path: '/'});
-      res.status(200).json({ message: "success", data: data });
+      // res.cookie("token", token, {maxAge: 30 * 24 * 60 * 60 * 1000, secure: true, httpOnly: true, path: '/'});
+      res.status(200).json({ message: "success", data: data, token: token });
     } else {
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
