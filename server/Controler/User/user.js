@@ -20,6 +20,7 @@ const LoginUser = async (req, res) => {
         process.env.SECRET
       );
 
+      data.token = token;
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -137,7 +138,7 @@ const GetUserProfile = async (req, res) => {
 };
 
 const GetRegisterUserData = async (req, res) => {
-  const cookieData = req.cookies.token;
+  const cookieData = req.headers.authorization.split(" ")[1];
 
   if (cookieData) {
     const { email, _id } = jwt.verify(cookieData, process.env.SECRET);
