@@ -14,7 +14,8 @@ const IssueBookMiddleWare = async (req, res, next) => {
     const UserData = await Profile.findById({ _id: _id, name: email });
 
     if (UserData === null) {
-      res.header("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
       res.status(200).json({ message: "You have not register" });
     } else {
       const IssueBookData = await IssueBook.findOne({
@@ -22,7 +23,8 @@ const IssueBookMiddleWare = async (req, res, next) => {
       });
 
       if (IssueBookData !== null) {
-        res.header("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
         res.status(200).json({ message: "This book Already issue to you" });
       } else {
         const data = await BookUpload.findById({ _id: Bid });
@@ -32,13 +34,15 @@ const IssueBookMiddleWare = async (req, res, next) => {
           req.body.file = data.file;
           next();
         } else {
-          res.header("Access-Control-Allow-Credentials", "true");
+          res.setHeader("Access-Control-Allow-Credentials", "true");
+          res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
           res.status(200).json({ message: "Book not available" });
         }
       }
     }
   } else {
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Origin", "https://react-phi-coral.vercel.app");
     res.status(200).json({ message: "Your are not login" });
   }
 };
