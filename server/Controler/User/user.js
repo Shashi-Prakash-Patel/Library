@@ -138,7 +138,7 @@ const GetUserProfile = async (req, res) => {
 };
 
 const GetRegisterUserData = async (req, res) => {
-  const cookieData = req.headers.authorization.split(" ")[1];
+  const cookieData = req.cookies.token;
 
   if (cookieData) {
     const { email, _id } = jwt.verify(cookieData, process.env.SECRET);
