@@ -20,7 +20,6 @@ const LoginUser = async (req, res) => {
         process.env.SECRET
       );
 
-      data.token = token;
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
